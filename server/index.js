@@ -1,36 +1,15 @@
-const express = require('express')
-const http = require('http')
-const { WebSocketServer } = require('ws')
-require('express')().use(require('cors')({origin:'*'})).use(require('express').json()).use(require('compression')()).use(require('helmet')({contentSecurityPolicy:false}))
-
-const PORT = +process.env.PORT || 4000
-const app = express()
-const db = {scripts:[],novels:[]}
-let seq = 1
-
-app.get('/',(r,e)=>e.json({service:'script-to-novel',status:'online'}))
-app.get('/health',(r,e)=>e.json({ok:true}))
-app.get('/api/v1/health',(r,e)=>e.json({ok:true}))
-app.get('/api/v1/settings',(r,e)=>e.json({}))
-app.put('/api/v1/settings',(r,e)=>e.json({saved:true}))
-app.get('/api/v1/scripts',(r,e)=>e.json({scripts:db.scripts}))
+const exp=require('express'),http=require('http'),{WebSocketServer}=require('ws')
+const app=exp()
+app.use(require('cors')({origin:'*'})).use(exp.json()).use(require('compression')()).use(require('helmet')({contentSecurityPolicy:false}))
+const db={scripts:[],novels:[]},seq=1
+app.get('/',(r,e)=>e.json({status:'ok'})).get('/health',(r,e)=>e.json({ok:true})).get('/api/v1/scripts',(r,e)=>e.json({scripts:db.scripts}))
 app.post('/api/v1/scripts',(r,e)=>{
-  const s={id:seq++,title:r.body?.title||`Script ${seq}`,status:'uploaded',created_at:new Date().toISOString()}
+  const s={id:seq++,title:r.body?.title||`Script ${seq}`,created_at:new Date().toISOString()}
   db.scripts.push(s)
   e.status(201).json(s)
 })
-app.get('/api/v1/scripts/:id',(r,e)=>{
-  const s=db.scripts.find(x=>String(x.id)===r.params.id)
-  e.json(s||{error:'Not Found'})
-})
-app.get('/api/v1/novels',(r,e)=>e.json({novels:db.novels}))
-app.get('/api/v1/novels/:id',(r,e)=>{
-  const n=db.novels.find(x=>String(x.id)===r.params.id)
-  e.json(n||{error:'Not Found'})
-})
-app.get('/api/v1/novels/:id/export',(r,e)=>e.send(`# Export ${r.params.id}`))
-
-const srv = http.createServer(app)
+app.get('/api/v1/scripts/:id',(r,e)=>e.json(db.scripts.find(x=>String(x.id)===r.params.id)||{error:'Not Found'}))
+const srv=http.createServer(app)
 new WebSocketServer({server:srv,path:'/ws'}).on('connection',ws=>{
   ws.send(JSON.stringify({type:'connected'}))
   ws.on('message',m=>{
@@ -41,4 +20,4 @@ new WebSocketServer({server:srv,path:'/ws'}).on('connection',ws=>{
     },400*(i+1)))
   })
 })
-srv.listen(PORT,()=>console.log(`Listening on ${PORT}`))
+srv.listen(+process.env.PORT||4000,()=>console.log('Listening'))
