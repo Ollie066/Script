@@ -1,0 +1,68 @@
+/* CSS Reset (Eric Meyer + tweaks) */
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video { margin: 0; padding: 0; border: 0; font-size: 100%; font: inherit; vertical-align: baseline }
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section { display: block }
+body { line-height: 1 }
+ol, ul { list-style: none }
+blockquote, q { quotes: none }
+blockquote:before, blockquote:after, q:before, q:after { content: ''; content: none }
+table { border-collapse: collapse; border-spacing: 0 }
+
+/* Custom properties */
+:root {
+  --color-bg: #ffffff;
+  --color-fg: #0f172a;
+  --color-muted: #64748b;
+  --color-primary: #4f46e5;
+  --color-primary-600: #4338ca;
+  --color-secondary: #0ea5e9;
+  --color-danger: #ef4444;
+  --color-success: #22c55e;
+  --color-warning: #f59e0b;
+  --radius-sm: 6px;
+  --radius: 10px;
+  --radius-lg: 14px;
+  --shadow-sm: 0 1px 2px rgba(0,0,0,.06);
+  --shadow: 0 6px 12px rgba(0,0,0,.08);
+  --shadow-lg: 0 16px 32px rgba(0,0,0,.12);
+  --space-1: 4px; --space-2: 8px; --space-3: 12px; --space-4: 16px; --space-5: 24px; --space-6: 32px; --space-8: 48px;
+}
+
+/* Typography scale */
+body { font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Helvetica, Arial; color: var(--color-fg); background: var(--color-bg) }
+h1 { font-size: clamp(2rem, 2vw + 1rem, 3rem); font-weight: 700; line-height: 1.1 }
+h2 { font-size: clamp(1.5rem, 1.2vw + 1rem, 2.25rem); font-weight: 700; line-height: 1.2 }
+h3 { font-size: 1.25rem; font-weight: 600 }
+h4 { font-size: 1.125rem; font-weight: 600 }
+p  { line-height: 1.7 }
+small { color: var(--color-muted) }
+
+/* Utilities */
+.container { width: min(1100px, 92%); margin-inline: auto }
+.grid { display: grid; gap: var(--space-4) }
+.flex { display: flex; gap: var(--space-3); align-items: center }
+.btn { display: inline-flex; align-items: center; gap: 8px; padding: 8px 12px; border: 1px solid #e2e8f0; border-radius: var(--radius-sm); background: #fff; cursor: pointer }
+.btn:hover { background: #f8fafc }
+.hidden { display: none !important }
+.sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0 }
+
+/* Animations */
+@keyframes shimmer { 0% { background-position: -200% 0 } 100% { background-position: 200% 0 } }
+.animate-shimmer { background: linear-gradient(90deg, #f1f5f9, #e2e8f0, #f1f5f9); background-size: 200% 100%; animation: shimmer 1.5s infinite }
+
+/* Breakpoints */
+@media (max-width: 900px) { .hide-md { display: none !important } }
+@media (max-width: 640px) { .hide-sm { display: none !important } }
+
+

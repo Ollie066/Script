@@ -1,0 +1,18 @@
+{
+  "name": "script-to-novel-converter",
+  "private": true,
+  "version": "0.1.0",
+  "scripts": {
+    "setup": "./setup.sh",
+    "start": "./start.sh",
+    "backend": "cd backend && rails server",
+    "frontend": "cd frontend && npm run dev",
+    "dev:backend": "cd backend && bin/rails server",
+    "dev:frontend": "cd frontend && npm run dev",
+    "dev": "concurrently \"npm:dev:backend\" \"npm:dev:frontend\"",
+    "install:all": "(cd backend && bundle install) && (cd frontend && npm install)"
+  },
+  "devDependencies": {
+    "concurrently": "^9.0.1"
+  }
+}

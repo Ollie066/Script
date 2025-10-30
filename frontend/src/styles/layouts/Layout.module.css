@@ -1,0 +1,12 @@
+.header { display: flex; align-items: center; justify-content: space-between; padding: var(--space-4) var(--space-5); border-bottom: 1px solid #e2e8f0; background: #fff; position: sticky; top: 0; z-index: 10 }
+.nav { display: flex; gap: var(--space-4) }
+.main { display: grid; grid-template-columns: 240px 1fr; gap: var(--space-5); padding: var(--space-5) }
+.sidebar { border-right: 1px solid #e2e8f0; padding-right: var(--space-5) }
+.footer { border-top: 1px solid #e2e8f0; padding: var(--space-4) var(--space-5); color: var(--color-muted) }
+
+@media (max-width: 900px) {
+  .main { grid-template-columns: 1fr }
+  .sidebar { border-right: 0; padding-right: 0 }
+}
+
+

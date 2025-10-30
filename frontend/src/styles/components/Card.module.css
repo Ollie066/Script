@@ -1,0 +1,14 @@
+.root { border: 1px solid #e2e8f0; border-radius: var(--radius); background: #fff; box-shadow: var(--shadow) }
+.header { padding: var(--space-4) var(--space-5); border-bottom: 1px solid #e2e8f0; display: flex; align-items: center; justify-content: space-between }
+.body { padding: var(--space-5) }
+.footer { padding: var(--space-4) var(--space-5); border-top: 1px solid #e2e8f0 }
+.clickable { cursor: pointer }
+.clickable:hover { box-shadow: var(--shadow-lg) }
+.status { display: inline-flex; align-items: center; gap: 6px; font-size: 12px; color: var(--color-muted) }
+.statusDot { width: 8px; height: 8px; border-radius: 999px; background: var(--color-muted) }
+.ok { background: var(--color-success) }
+.warn { background: var(--color-warning) }
+.err { background: var(--color-danger) }
+@media (max-width: 640px) { .body { padding: var(--space-4) } .header, .footer { padding: var(--space-3) var(--space-4) } }
+
+

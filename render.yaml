@@ -1,0 +1,20 @@
+services:
+  - type: web
+    name: script-to-novel-server
+    env: docker
+    rootDir: server
+    autoDeploy: true
+    healthCheckPath: /health
+    dockerfilePath: Dockerfile
+    envVars: [{key: PORT, value: 4000}]
+  - type: web
+    name: script-to-book
+    env: docker
+    rootDir: frontend
+    autoDeploy: true
+    dockerfilePath: Dockerfile
+    envVars:
+      - {key: VITE_API_BASE, value: https://script-to-novel-server.onrender.com/api/v1}
+      - {key: VITE_WS_URL, value: wss://script-to-novel-server.onrender.com/ws}
+
+
