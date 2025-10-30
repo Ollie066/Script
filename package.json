@@ -4,7 +4,7 @@
   "version": "0.1.0",
   "scripts": {
     "setup": "./setup.sh",
-    "start": "./start.sh",
+    "start": "node server/index.js",
     "backend": "cd backend && rails server",
     "frontend": "cd frontend && npm run dev",
     "dev:backend": "cd backend && bin/rails server",

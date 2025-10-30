@@ -13,8 +13,7 @@ export function useWebSocket({ token = '' } = {}) {
 
   function connect() {
     const protocol = location.protocol === 'https:' ? 'wss' : 'ws'
-    const host = location.hostname
-    const url = (import.meta.env.VITE_WS_URL) || `${protocol}://${host}:4000/ws?token=${encodeURIComponent(token)}`
+    const url = (import.meta.env.VITE_WS_URL) || `${protocol}://${location.host}/ws?token=${encodeURIComponent(token)}`
     try {
       socketRef.current = new WebSocket(url)
       socketRef.current.onopen = () => setStatus('connected')
