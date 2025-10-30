@@ -2,6 +2,10 @@
   "name": "script-to-novel-converter",
   "private": true,
   "version": "0.1.0",
+  "workspaces": [
+    "frontend",
+    "server"
+  ],
   "scripts": {
     "setup": "./setup.sh",
     "start": "node server/index.js",
